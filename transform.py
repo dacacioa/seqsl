@@ -36,18 +36,28 @@ def create_pdf(output_filename, image_path):
     # Datos de la tabla
     table_data = [
         ['Date', 'UTC', 'Band', 'Mode', 'RST', 'QSL'],
-        ['', '', '', '', '', '']
+        ['16/09/2024', '10:00', '20m', 'FT8', '59', '']
     ]
 
     # Crear la tabla con márgenes laterales ajustando los anchos de las columnas
     table = Table(table_data, colWidths=[(width - left_margin - right_margin) / 6] * 6, rowHeights=[height * 0.05] * 2)
 
-    # Estilo de la tabla: fondo negro y letras blancas en la primera fila, texto centrado
+    # Estilo de la tabla: fondo negro y letras blancas en la primera y segunda fila, texto centrado
     table.setStyle(TableStyle([
+        # Estilo para la primera fila
         ('BACKGROUND', (0, 0), (-1, 0), colors.black),
         ('TEXTCOLOR', (0, 0), (-1, 0), colors.white),
+        
+        # Estilo para la segunda fila
+        ('BACKGROUND', (0, 1), (-1, 1), colors.black),
+        ('TEXTCOLOR', (0, 1), (-1, 1), colors.white),
+        
+        # Alineación del texto
         ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
-        ('GRID', (0, 0), (-1, -1), 1, colors.black)
+        
+        # Bordes y cuadrícula en color blanco
+        ('GRID', (0, 0), (-1, -1), 1, colors.white),
+        ('BOX', (0, 0), (-1, -1), 1, colors.white)
     ]))
 
     # Espaciador para controlar el espacio antes de la tabla
