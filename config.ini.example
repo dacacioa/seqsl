@@ -1,0 +1,18 @@
+[logging]
+loglevel = INFO  # Opciones: DEBUG, INFO, WARNING, ERROR, CRITICAL
+
+[gmail]
+sender_email = youremail@gmail.com #  Gmail address.
+sender_password = dfdfdfdfdddfffddf # Gmail App password. More information in https://support.google.com/mail/answer/185833?hl=en 
+mail_body = Thank you for our 2-way contact. # Your body text.
+
+    Please find attached my QSL card.
+
+    This email was automatically generated using SEQSL tool created by EA3IPX.
+
+[qrz]
+username = EA3IPX # QRZ username
+password = mycoolpassword # QRZ password
+
+[qsl]
+outputfolder = output # Output temporal folder
