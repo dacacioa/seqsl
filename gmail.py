@@ -1,4 +1,5 @@
 import smtplib
+import logging
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.base import MIMEBase
@@ -27,9 +28,9 @@ def send_email_with_attachment(sender_email, receiver_email, subject, body, atta
 
             # Adjuntar el archivo al mensaje
             msg.attach(part)
-            print ("Mensaje preparado con éxito")
+            logging.info ("Mensaje preparado con éxito")
     except Exception as e:
-        print(f"Error al adjuntar el archivo: {e}")
+        logging.error(f"Error al adjuntar el archivo: {e}")
         return False
 
     # Conectar con el servidor SMTP de Gmail
@@ -39,9 +40,9 @@ def send_email_with_attachment(sender_email, receiver_email, subject, body, atta
             server.login(sender_email, sender_password)  # Iniciar sesión en Gmail
             text = msg.as_string()  # Convertir el mensaje a una cadena
             server.sendmail(sender_email, receiver_email, text)  # Enviar el correo
-            print("Correo enviado con éxito.")
+            logging.info("Correo enviado con éxito.")
             return True
     except Exception as e:
-        print(f"Error al enviar el correo: {e}")
+        logging.error(f"Error al enviar el correo: {e}")
         return False
    
