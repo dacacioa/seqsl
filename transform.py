@@ -1,4 +1,3 @@
-import random
 import string
 import os
 from reportlab.lib.pagesizes import A6, landscape
@@ -7,7 +6,7 @@ from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Spacer
 from reportlab.platypus.frames import Frame
 from reportlab.platypus import PageTemplate
 from reportlab.lib.units import mm
-from qrz_api import consulta_email, get_api_key
+
 
 def generate_random_words():
     # Generar palabras aleatorias
@@ -107,33 +106,4 @@ def extraer_campos(nombre_fichero):
 
     return datos_extraidos
 
-# Datos para la autenticación
-username = 'kk'
-password = 'kk'
-
-apikey = get_api_key(username, password)
-
-if __name__ == "__main__":
-    # Ruta de la imagen de fondo
-    image_path = "alella.jpg"  # Reemplazar con la ruta de tu imagen
-
-    # Crear carpeta de salida si no existe
-    output_folder = "output"
-    os.makedirs(output_folder, exist_ok=True)
-
-    # Extraer los datos de los registros
-    registros = extraer_campos('qso.adi')
-
-    # Crear un PDF individual por cada registro extraído
-    for registro in registros:
-        call_sign = registro[0]  # Suponemos que CALL es el primer elemento del registro
-        # Nombre del archivo usando CALL, asegurando que no tenga caracteres inválidos
-        safe_call_sign = "".join(c for c in call_sign if c.isalnum() or c in ("_", "-"))  # Filtrar caracteres inválidos
-        email = consulta_email(apikey, safe_call_sign) # Obtener el email usando la función que ahora llama a get_api_key internamente
-        if email:
-            print(f"El email del callsign {safe_call_sign} es: {email}")
-            output_filename = os.path.join(output_folder, f"{safe_call_sign}.pdf")  # Ruta completa del archivo
-            create_pdf(output_filename, image_path, registro)
-        else:
-            print(f"No se pudo obtener el email para el callsign {safe_call_sign}.")
 

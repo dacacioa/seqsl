@@ -4,6 +4,7 @@ from email.mime.text import MIMEText
 from email.mime.base import MIMEBase
 from email import encoders
 
+
 def send_email_with_attachment(sender_email, receiver_email, subject, body, attachment_file_path, sender_password):
     # Crear el objeto MIME
     msg = MIMEMultipart()
@@ -26,6 +27,7 @@ def send_email_with_attachment(sender_email, receiver_email, subject, body, atta
 
             # Adjuntar el archivo al mensaje
             msg.attach(part)
+            print ("Mensaje preparado con éxito")
     except Exception as e:
         print(f"Error al adjuntar el archivo: {e}")
         return False
@@ -42,3 +44,4 @@ def send_email_with_attachment(sender_email, receiver_email, subject, body, atta
     except Exception as e:
         print(f"Error al enviar el correo: {e}")
         return False
+   
