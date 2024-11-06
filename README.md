@@ -11,6 +11,7 @@ SEQSL is a tool designed for amateur radio operators that automates the sending 
 
 - **Python 3.6+**
 - **GMAIL Account** with access enabled for less secure apps (or use two-factor authentication with app passwords if necessary).
+- **QRZ Premium Account** to lookup the destionation email.
 
 ## Installation
 
