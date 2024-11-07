@@ -14,11 +14,14 @@ config.read('config.ini')
 loglevel_str = config.get('logging', 'loglevel', fallback='INFO').upper()
 loglevel = getattr(logging, loglevel_str, logging.INFO)  # Convertir a nivel de logging válido
 
-# Configurar el logging para guardar en execution.log con el nivel de logging especificado
+# Configurar el logging para guardar en execution.log y mostrar en la terminal
 logging.basicConfig(
-    filename='execution.log',
     level=loglevel,
-    format='%(asctime)s - %(levelname)s - %(message)s'
+    format='%(asctime)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler("execution.log"),
+        logging.StreamHandler()  # Agrega salida de logging en la terminal
+    ]
 )
 
 # Configuración de argparse para recibir los archivos .qsl y .adi como parámetros
