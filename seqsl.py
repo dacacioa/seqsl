@@ -2,9 +2,9 @@ import configparser
 import os
 import argparse
 import logging
-from qrz_api import consulta_email, get_api_key
-from transform import extraer_campos, create_pdf
-from gmail import send_email_with_attachment
+from utils.qrzapi import consulta_email, get_api_key
+from utils.transform import extraer_campos, create_pdf
+from utils.gmail import send_email_with_attachment
 
 # Cargar la configuración desde config.ini
 config = configparser.ConfigParser()
