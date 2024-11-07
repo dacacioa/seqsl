@@ -30,6 +30,7 @@
    ```bash
    pip install -r requirements.txt
    ```
+3. Copy `config.ini.example` to `config.ini` and update it with your specific information.
 
 ## Sending QSL Cards
 
