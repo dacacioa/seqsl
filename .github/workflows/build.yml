@@ -32,6 +32,19 @@ jobs:
           name: seqsl
           path: dist/seqsl.exe
 
+      - name: Create GitHub Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref_name }}  # Uses the tag that triggered the release
+          release_name: "Release ${{ github.ref_name }}"
+          body: |
+            Automated release for version ${{ github.ref_name }}
+          draft: false
+          prerelease: false
+
       - name: Upload Release Asset
         uses: actions/upload-release-asset@v1
         env:
