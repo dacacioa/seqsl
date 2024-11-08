@@ -2,11 +2,12 @@ name: Build Workflow
 
 on:
   push:
-    tags:
-      - 'v*.*.*'  # Trigger workflow on version tags, e.g., v1.0.0
+    branches:
+      - main
 
 jobs:
   build-windows:
+    if: contains(github.event.head_commit.message, 'v*.*.*')
     runs-on: windows-2019
     steps:
       - name: Checkout
