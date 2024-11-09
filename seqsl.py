@@ -61,7 +61,8 @@ if __name__ == "__main__":
                 subject,
                 config['gmail']['mail_body'],
                 qlsfile,
-                config['gmail']['sender_password']
+                config['gmail']['sender_password'],
+                config['gmail']['smtp_server']
             )
             
             # Eliminar el archivo PDF después de enviarlo

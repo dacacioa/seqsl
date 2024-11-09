@@ -4,6 +4,7 @@ loglevel = INFO  # Opciones: DEBUG, INFO, WARNING, ERROR, CRITICAL
 [gmail]
 sender_email = youremail@gmail.com #  Gmail address.
 sender_password = dfdfdfdfdddfffddf # Gmail App password. More information in https://support.google.com/mail/answer/185833?hl=en 
+smtp_server = smtp.gmail.com #SMTP Server to use.
 mail_body = Thank you for our 2-way contact. # Your body text.
 
     Please find attached my QSL card.

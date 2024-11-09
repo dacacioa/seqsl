@@ -6,7 +6,7 @@
 
 - **Automated Sending**: Streamlines and optimizes the process of sending electronic QSL cards.
 - **Automatic QRZ lookup**: Get the email automatically from QRZ.
-- **GMAIL Integration**: Uses GMAIL as the email service to send QSL cards. Compatibility with other SMTP services is planned for future updates.
+- **SMTP Integration**: Uses Gmail or another SMTP server to send emails.
 
 ## Requirements
 

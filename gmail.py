@@ -6,7 +6,7 @@ from email.mime.base import MIMEBase
 from email import encoders
 
 
-def send_email_with_attachment(sender_email, receiver_email, subject, body, attachment_file_path, sender_password):
+def send_email_with_attachment(sender_email, receiver_email, subject, body, attachment_file_path, sender_password, smtp_server):
     # Crear el objeto MIME
     msg = MIMEMultipart()
     msg['From'] = sender_email
@@ -35,7 +35,7 @@ def send_email_with_attachment(sender_email, receiver_email, subject, body, atta
 
     # Conectar con el servidor SMTP de Gmail
     try:
-        with smtplib.SMTP('smtp.gmail.com', 587) as server:
+        with smtplib.SMTP(smtp_server, 587) as server:
             server.starttls()  # Iniciar conexión segura
             server.login(sender_email, sender_password)  # Iniciar sesión en Gmail
             text = msg.as_string()  # Convertir el mensaje a una cadena
