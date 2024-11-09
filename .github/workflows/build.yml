@@ -3,14 +3,24 @@ name: Build Workflow
 on:
   push:
     branches:
-      - main
+      - main  # O la rama en la que deseas activar el flujo
 
 jobs:
   build-windows:
+    if: contains(github.event.head_commit.message, 'v[0-9]+\\.[0-9]+\\.[0-9]+')
     runs-on: windows-2019
+
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+
+      - name: Extract Version Tag from Commit Message
+        id: extract_version
+        run: |
+          echo "Commit message: ${{ github.event.head_commit.message }}"
+          version_tag=$(echo "${{ github.event.head_commit.message }}" | grep -oE 'v[0-9]+\.[0-9]+\.[0-9]+')
+          echo "Extracted version: $version_tag"
+          echo "tag_name=$version_tag" >> $GITHUB_ENV
 
       - name: Install Python
         uses: actions/setup-python@v2
@@ -38,10 +48,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ github.ref_name }}  # Uses the tag that triggered the release
-          release_name: "Release ${{ github.ref_name }}"
+          tag_name: ${{ env.tag_name }}  # Usa la etiqueta extraída del mensaje del commit
+          release_name: "Release ${{ env.tag_name }}"
           body: |
-            Automated release for version ${{ github.ref_name }}
+            Automated release for version ${{ env.tag_name }}
           draft: false
           prerelease: false
 
@@ -51,6 +61,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: dist/seqsl.exe  # Asegúrate de que el archivo esté en esta ruta
+          asset_path: dist/seqsl.exe
           asset_name: seqsl.exe
           asset_content_type: application/octet-stream
