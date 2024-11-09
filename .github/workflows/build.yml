@@ -24,7 +24,7 @@ jobs:
 
       - name: Install Python
         uses: actions/setup-python@v2
-        with:
+        with: 
           python-version: '3.7'
           architecture: 'x64'
 
@@ -37,7 +37,7 @@ jobs:
           pyinstaller --onefile seqsl.py
 
       - name: Upload Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: seqsl
           path: dist/seqsl.exe
