@@ -52,10 +52,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ github.ref_name }}  # Usa la etiqueta que activó la liberación
-          release_name: "Release ${{ github.ref_name }}"
+          tag_name: ${{ github.event.head_commit.message }}  # Usa la etiqueta que activó la liberación
+          release_name: "Release ${{ github.event.head_commit.message }}"
           body: |
-            Automated release for version ${{ github.ref_name }}
+            Automated release for version ${{ github.event.head_commit.message }}
           draft: false
           prerelease: false
 
