@@ -12,7 +12,7 @@
 
 - **Python 3.6+**
 - **PIP package manager**
-- **GMAIL Account** with access enabled for less secure apps, or use two-factor authentication with app passwords.
+- **SMTP Account** to send emails. If you use GMAIL you'll need enabled access for less secure apps, or use two-factor authentication with app passwords.
 - **QRZ Account** to look up the recipient's email address. A premium account is recommended to avoid lookup limits.
 - **QSL file** in `.jpg` format with your QSL card. SEQSL will add a table with QSO details at the bottom of the card, so keep this area clear.
 - **ADI file** containing the QSOs for which you wish to send QSL cards.
