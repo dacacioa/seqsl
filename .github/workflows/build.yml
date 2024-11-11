@@ -42,7 +42,7 @@ jobs:
       - name: Upload Artifact
         if: success()
         uses: actions/upload-artifact@v3
-        with:
+        with: 
           name: seqsl
           path: dist/seqsl.exe
 
