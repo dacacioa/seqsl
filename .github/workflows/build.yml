@@ -2,43 +2,57 @@ name: Build Workflow
 
 on:
   push:
-    tags:
-      - 'v*.*.*'  # Trigger workflow on version tags, e.g., v1.0.0
+    branches:
+      - main  # Solo se ejecuta en pushes a la rama main
 
 jobs:
   build-windows:
     runs-on: windows-2019
+
     steps:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - name: Check Commit Message for Version Pattern
+        id: check_message
+        run: |
+          echo "Commit message: ${{ github.event.head_commit.message }}"
+          if [[ ! "${{ github.event.head_commit.message }}" =~ ^v[0-9]+\.[0-9]+\.[0-9]+ ]]; then
+            echo "Commit message does not contain a version pattern like v0.0.1. Exiting..."
+            exit 1
+          fi
       - name: Install Python
+        if: success()  # Solo continúa si el commit message contiene el patrón de versión
         uses: actions/setup-python@v2
         with:
           python-version: '3.7'
           architecture: 'x64'
 
       - name: Install requirements
+        if: success()
         run: |
           pip install -r requirements.txt
 
       - name: Run PyInstaller
+        if: success()
         run: |
           pyinstaller --onefile seqsl.py
 
       - name: Upload Artifact
+        if: success()
         uses: actions/upload-artifact@v3
         with:
           name: seqsl
           path: dist/seqsl.exe
 
       - name: Create GitHub Release
+        if: success()
         id: create_release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ github.ref_name }}  # Uses the tag that triggered the release
+          tag_name: ${{ github.ref_name }}  # Usa la etiqueta que activó la liberación
           release_name: "Release ${{ github.ref_name }}"
           body: |
             Automated release for version ${{ github.ref_name }}
@@ -46,6 +60,7 @@ jobs:
           prerelease: false
 
       - name: Upload Release Asset
+        if: success()
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
