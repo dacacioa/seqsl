@@ -46,7 +46,7 @@ To send a QSL card, run the following command:
 
 2. Copy file seqsl.exe to a local folder.
 
-3. Download `config.ini.example` to locals folder as `config.ini` and update it with your specific information. 
+3. Download `config.ini.example` to local folder as `config.ini` and update it with your specific information. 
 
 4. Sending QSL Cards
 
