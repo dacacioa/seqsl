@@ -72,7 +72,7 @@ def extraer_campos(nombre_fichero):
     datos_extraidos = []
 
     # Abrir el fichero en modo lectura
-    with open(nombre_fichero, 'r') as archivo:
+    with open(nombre_fichero, 'r', encoding='utf-8') as archivo:
         for linea in archivo:
             registro = []
             campos = {
