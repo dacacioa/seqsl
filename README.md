@@ -32,10 +32,26 @@
    ```
 3. Copy `config.ini.example` to `config.ini` and update it with your specific information.
 
-## Sending QSL Cards
+4. Sending QSL Cards
 
 To send a QSL card, run the following command:
 
    ```bash
    python seqsl.py qslcard.jpg adifile.adi
    ```
+
+## Installation and Execution from Windows binary
+
+1. Go to releases [https://github.com/dacacioa/seqsl/releases]
+
+2. Copy file seqsl.exe to a local folder.
+
+3. Download `config.ini.example` to locals folder as `config.ini` and update it with your specific information. 
+
+4. Sending QSL Cards
+
+To send a QSL card, run the following command:
+
+   ```cmd
+   seqsl.exe qslcard.jpg adifile.adi
+
