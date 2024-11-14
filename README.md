@@ -9,7 +9,7 @@
 - **SMTP Integration**: Uses Gmail or another SMTP server to send emails.
 
 ## Requirements
-
+ 
 - **Python 3.6+**
 - **PIP package manager**
 - **SMTP Account** to send emails. If you use GMAIL you'll need enabled access for less secure apps.
