@@ -54,11 +54,12 @@ if __name__ == "__main__":
         # Nombre del archivo usando CALL, asegurando que no tenga caracteres inválidos
         safe_call_sign = "".join(c for c in call_sign if c.isalnum() or c in ("/"))  # Filtrar caracteres inválidos
         email = consulta_email(apikey, safe_call_sign)  # Obtener el email usando la función que ahora llama a get_api_key internamente
+        sanitazed_call_sign = "".join(c for c in safe_call_sign if c.isalnum())
         if email:
             logging.info(f"El email del callsign {safe_call_sign} es: {email}")
-            output_filename = os.path.join(output_folder, f"{safe_call_sign}.pdf")  # Ruta completa del archivo
+            output_filename = os.path.join(output_folder, f"{sanitazed_call_sign}.pdf")  # Ruta completa del archivo
             create_pdf(output_filename, image_path, registro)
-            qlsfile = output_folder + '/' + safe_call_sign + '.pdf'
+            qlsfile = output_folder + '/' + sanitazed_call_sign + '.pdf'
             subject = 'New QSL card from ' + config['qrz']['username'] + ' to ' + safe_call_sign
             
             try:
